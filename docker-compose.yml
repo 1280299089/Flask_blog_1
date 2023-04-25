@@ -1,0 +1,27 @@
+version: '3'
+networks:
+  mysite:
+services:
+  mysite-app:
+    build:
+      mysite
+    networks:
+      - mysite
+    ports:
+      - "6000"
+    nginx:
+      build:
+        nginx
+      networks:
+        - mysite
+      ports:
+        - "6000"
+    nginx:
+      build:
+        nginx
+      networks:
+        - mysite
+      depends_on:
+        - mysite-app
+      ports:
+        - "80:80"
